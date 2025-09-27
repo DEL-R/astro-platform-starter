@@ -15,6 +15,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview build (not supported by Netlify adapter) |
+| `Sitemap`                 | Generated via `@astrojs/sitemap`                 |
 | `npm run check`           | Run Astro/TypeScript diagnostics                 |
 | `npm run astro ...`       | Run CLI commands like `astro add`                |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
@@ -56,3 +57,8 @@ Notes:
 - `astro preview` is not supported by the `@astrojs/netlify` adapter. Use `netlify dev` for local previews.
 - Diagnostics: run `npm run check` (uses `@astrojs/check` and `typescript`, included in devDependencies).
 - On Windows, Node.js 20 LTS is recommended for Netlify CLI compatibility.
+
+Sitemap & Robots
+- The site URL is set in `astro.config.mjs` (`site`). Update it if you change domains.
+- A `robots.txt` is provided and references the generated sitemap.
+- Netlify headers are set in `public/_headers` to cache `/images/*` aggressively and keep HTML revalidating.
