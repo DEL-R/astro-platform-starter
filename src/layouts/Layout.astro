@@ -3,17 +3,20 @@ import '../../src/styles/globals.css';
 import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
+import type { AccentVariant } from '../config/theme';
+import { ACCENT } from '../config/theme';
 import Footer from '../components/Footer.astro';
 
 interface Props {
     title: string;
+    accentVariant?: AccentVariant;
 }
 
-const { title } = Astro.props;
+const { title, accentVariant = ACCENT } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr" data-accent={accentVariant}>
     <head>
         <meta charset="UTF-8" />
         <title>{title}</title>
@@ -22,13 +25,11 @@ const { title } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
     </head>
-    <body class="antialiased text-white bg-complementary">
-        <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
-                <Header />
-                <main class="grow"><slot /></main>
-                <Footer />
-            </div>
-        </div>
-    </body>
+<body class="antialiased">
+    <div class="site-wrapper">
+        <Header />
+        <main class="flex-1"><slot /></main>
+        <Footer />
+    </div>
+</body>
 </html>

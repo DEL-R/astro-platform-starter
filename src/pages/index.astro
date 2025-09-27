@@ -1,21 +1,58 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import Monogram from '../components/Monogram.astro';
+import { ACCENT } from '../config/theme';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Portfolio - Accueil" accentVariant={ACCENT}>
+    <section class="hero-grid">
+        <article class="hero-area-portrait hero-tile hero-tile--accent" aria-label="Monogramme Sabrina B">
+            <Monogram initials="SB" baseline="Sabrina B - BTS SIO SISR" variant={ACCENT} />
+        </article>
+
+        <article class="hero-area-intro hero-tile hero-tile--accent">
+            <div class="space-y-4">
+                <p class="hero-number">01 | INTRO</p>
+                <h1 class="text-3xl sm:text-4xl">Salut, je suis Sabrina</h1>
+                <p class="text-muted">
+                    Etudiant(e) en BTS informatique, je cree des interfaces web pastel et geek chic. Ce portfolio documente mon apprentissage
+                    et mes experimentations front-end.
+                </p>
+            </div>
+            <a href="/a-propos" class="hero-button">-> A propos</a>
+        </article>
+
+        <article class="hero-area-studio hero-tile hero-tile--image">
+            <img src="/images/hero-studio.jpg" alt="Bureau creatif" loading="lazy" />
+        </article>
+
+        <article class="hero-area-skills hero-tile">
+            <p class="hero-number">02 | COMPETENCES</p>
+            <div>
+                <h2 class="mb-4 text-xl">Mes ingredients</h2>
+                <div class="badge-list">
+                    <span class="badge">Astro</span>
+                    <span class="badge">React</span>
+                    <span class="badge">TypeScript</span>
+                    <span class="badge">Tailwind</span>
+                    <span class="badge">Netlify</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="hero-area-mood hero-tile hero-tile--image">
+            <img src="/images/hero-mood.jpg" alt="Moodboard geek chic" loading="lazy" />
+        </article>
+
+        <article class="hero-area-contact hero-tile hero-tile--accent">
+            <div class="space-y-4">
+                <p class="hero-number">03 | CONTACT</p>
+                <p class="text-muted">Envie de discuter d'un projet ou d'une alternance ?</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <a href="/projets" class="btn btn-lg">Voir mes projets</a>
+                <a href="/contact" class="btn btn-lg">Me contacter</a>
+            </div>
+        </article>
+    </section>
 </Layout>

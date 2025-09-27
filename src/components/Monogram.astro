@@ -1,0 +1,85 @@
+---
+interface Props {
+    initials: string;
+    baseline?: string;
+    class?: string;
+    variant?: 'matcha' | 'glacier' | 'rose' | 'sand' | 'mono' | 'night';
+}
+
+const { initials, baseline, class: className, variant = 'matcha' } = Astro.props as Props;
+
+const palettes = {
+    matcha: { stroke: '#252825', fill1: '#EFF8F1', fill2: '#D8F0DE', scan: 'rgba(28,34,28,0.06)', baseline: '#4D5A50' },
+    glacier: { stroke: '#1E2430', fill1: '#EEF4FF', fill2: '#D6E4FF', scan: 'rgba(30,36,48,0.07)', baseline: '#5B6679' },
+    rose: { stroke: '#2C2621', fill1: '#F9ECF1', fill2: '#F2D7E6', scan: 'rgba(44,38,33,0.06)', baseline: '#6D5D66' },
+    sand: { stroke: '#2E2030', fill1: '#F8F3EB', fill2: '#EDE0D1', scan: 'rgba(46,32,48,0.06)', baseline: '#5F4D60' },
+    mono: { stroke: '#161616', fill1: '#FFFFFF', fill2: '#F3F3F3', scan: 'rgba(0,0,0,0.05)', baseline: '#5A5A5A' },
+    night: { stroke: '#CDBDE2', fill1: '#433C4E', fill2: '#2F2A39', scan: 'rgba(205,189,226,0.15)', baseline: '#CBB7E6' }
+} as const;
+
+const theme = (palettes as any)[variant] ?? palettes.matcha;
+const styleVars = `--m-stroke:${theme.stroke};--m-fill1:${theme.fill1};--m-fill2:${theme.fill2};--m-scan:${theme.scan};--m-base:${theme.baseline}`;
+---
+
+<div class:list={["mono-tile", className]} style={styleVars}>
+    <div class="mono-mark" data-text={initials} aria-hidden="true">
+        <span>{initials}</span>
+    </div>
+    {baseline && <p class="mono-baseline">{baseline}</p>}
+</div>
+
+<style>
+    .mono-mark {
+        position: relative;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        line-height: 1;
+    }
+
+    .mono-mark > span {
+        /* Matcha Mint + Coal override (logo only) */
+        -webkit-text-stroke: 2px var(--m-stroke);
+        text-stroke: 2px var(--m-stroke);
+        color: transparent;
+        background:
+            /* discrètes scanlines pour la touche "tech" */
+            repeating-linear-gradient(0deg, var(--m-scan) 0 2px, transparent 2px 6px),
+            /* dégradé pastel matcha */
+            linear-gradient(160deg, var(--m-fill1) 0%, var(--m-fill2) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        display: inline-block;
+    }
+
+    .mono-mark::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        color: transparent;
+        background: linear-gradient(120deg, transparent 0 45%, rgba(255, 255, 255, 0.65) 50%, transparent 55% 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: mono-shine 1600ms ease-out 1 both;
+    }
+
+    @keyframes mono-shine {
+        from {
+            background-position: -200% 0;
+        }
+        to {
+            background-position: 200% 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .mono-mark::after {
+            animation: none;
+        }
+    }
+
+    .mono-baseline {
+        color: var(--m-base); /* baseline matcha, lisible et douce */
+    }
+</style>
+
+
