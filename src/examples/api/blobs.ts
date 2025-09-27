@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
     await blobStore.setJSON(key, parameters);
     return new Response(
         JSON.stringify({
-            message: `Stored shape "${key}"`
+            message: `Stored shape \"${key}\"`
         })
     );
 };
@@ -38,3 +38,4 @@ export const GET: APIRoute = async ({ request }) => {
         );
     }
 };
+
