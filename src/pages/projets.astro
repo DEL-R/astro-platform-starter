@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<Layout title="Projets - Portfolio">
+    <h1 class="mb-6">Projets</h1>
+    <p class="mb-8 text-muted">Quelques realisations et exercices techniques pour explorer le web pastel.</p>
+    <div class="card-grid">
+        {projects.map((project) => (
+            <ProjectCard {...project} />
+        ))}
+    </div>
+</Layout>
