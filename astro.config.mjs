@@ -5,8 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
+const site = process.env.DEPLOY_PRIME_URL || process.env.URL || 'https://kaptainkavern.netlify.app';
+
 export default defineConfig({
-    site: 'https://kaptainkavern.netlify.app',
+    site,
     vite: {
         plugins: [tailwindcss()]
     },
