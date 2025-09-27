@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact - Portfolio">
+    <h1 class="mb-6">Contact</h1>
+    <div class="card-panel max-w-xl space-y-6 text-muted">
+        <p>Envoyez-moi un message, je reponds rapidement.</p>
+
+        <form name="contact" method="POST" data-netlify="true" class="space-y-5" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden">
+                <label>
+                    Ne pas remplir: <input name="bot-field" />
+                </label>
+            </p>
+
+            <div class="space-y-2">
+                <label class="text-xs tracking-[0.2em] uppercase" for="name">Nom</label>
+                <input id="name" name="name" required class="input-field" />
+            </div>
+            <div class="space-y-2">
+                <label class="text-xs tracking-[0.2em] uppercase" for="email">Email</label>
+                <input id="email" name="email" type="email" required class="input-field" />
+            </div>
+            <div class="space-y-2">
+                <label class="text-xs tracking-[0.2em] uppercase" for="message">Message</label>
+                <textarea id="message" name="message" rows="6" required class="input-field"></textarea>
+            </div>
+            <button class="btn">Envoyer</button>
+        </form>
+    </div>
+</Layout>
