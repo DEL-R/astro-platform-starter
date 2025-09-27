@@ -14,8 +14,9 @@ All commands are run from the root of the project, from a terminal:
 | `npm install`             | Installs dependencies                            |
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run preview`         | Preview build (not supported by Netlify adapter) |
+| `npm run check`           | Run Astro/TypeScript diagnostics                 |
+| `npm run astro ...`       | Run CLI commands like `astro add`                |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## Deploying to Netlify
@@ -50,3 +51,8 @@ netlify dev
 ```
 
 If your browser doesn't navigate to the site automatically, visit [localhost:8888](http://localhost:8888).
+
+Notes:
+- `astro preview` is not supported by the `@astrojs/netlify` adapter. Use `netlify dev` for local previews.
+- Diagnostics: run `npm run check` (uses `@astrojs/check` and `typescript`, included in devDependencies).
+- On Windows, Node.js 20 LTS is recommended for Netlify CLI compatibility.

@@ -17,7 +17,11 @@
 - `npm run dev` — Astro dev server at `http://localhost:4321`.
 - `npm run build` — production build to `dist/`.
 - `npm run preview` — serve the production build.
-- `npm run astro check` — Astro/TypeScript diagnostics.
+<<<<<<< HEAD
+- `npm run check` - Astro/TypeScript diagnostics.
+=======
+- `npm run check` — Astro/TypeScript diagnostics.
+
 
 ## Coding Style & Naming Conventions
 - Prettier enforced: 4‑space indent, single quotes, no trailing commas, 160‑char width (`.prettierrc`). Markdown/YAML use 2 spaces.
@@ -41,3 +45,4 @@
 
 ## Agent-Specific Notes
 - Keep changes minimal and in-repo style; do not reformat unrelated files. Prefer existing patterns in `.astro`, React components, and utilities. Verify Netlify features with `netlify dev` before submitting.
+
